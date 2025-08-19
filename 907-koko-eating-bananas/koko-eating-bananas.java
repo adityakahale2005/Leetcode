@@ -25,6 +25,7 @@ class Solution {
             int totalH = calculateHourly(piles,mid);
 
             if(totalH <= h){
+                ans = totalH;
                 high = mid -1;
             } else {
                 low = mid + 1;
