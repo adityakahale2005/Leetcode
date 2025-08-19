@@ -19,7 +19,7 @@ class Solution {
     public int minEatingSpeed(int[] piles, int h) {
         int low=1;
         int high = findmax(piles);
-        int ans = Integer.MAX_VALUE;
+        int ans = -1;
         while(low <= high){
             int mid = (low+high)/2;
             int totalH = calculateHourly(piles,mid);
