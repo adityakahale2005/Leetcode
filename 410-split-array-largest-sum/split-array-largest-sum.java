@@ -1,16 +1,16 @@
 class Solution {
-    public static int countPartitions(int[] a, int maxSum) {
-        int n = a.length; // size of array
+    public static int countPartitions(int[] nums, int maxSum) {
+        int n = nums.length; // size of array
         int partitions = 1;
         long subarraySum = 0;
         for (int i = 0; i < n; i++) {
-            if (subarraySum + a[i] <= maxSum) {
+            if (subarraySum + nums[i] <= maxSum) {
                 // insert element to current subarray
-                subarraySum += a[i];
+                subarraySum += nums[i];
             } else {
                 // insert element to next subarray
                 partitions++;
-                subarraySum = a[i];
+                subarraySum = nums[i];
             }
         }
         return partitions;
