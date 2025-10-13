@@ -1,36 +1,36 @@
 class Solution {
     public int longestOnes(int[] nums, int k) {
-            // Left pointer of the sliding window
+          // Left pointer for the window
         int left = 0;
 
         // Counter for zeros in the window
-        int zerocount = 0;
+        int zeros = 0;
 
         // Variable to store maximum window length
-        int maxlen = 0;
+        int maxLen = 0;
 
         // Right pointer expands the window
         for (int right = 0; right < nums.length; right++) {
 
-            // If current element is zero, increment zerocount
+            // If element is zero, increase the zero count
             if (nums[right] == 0) {
-                zerocount++;
+                zeros++;
             }
 
-            // If zerocount exceeds k, move left and adjust zerocount
-            if (zerocount > k) {
+            // If zero count exceeds k, shrink the window
+            while (zeros > k) {
                 if (nums[left] == 0) {
-                    zerocount--;
+                    zeros--;
                 }
-                // Shrink window from left
+                // Move left pointer
                 left++; 
             }
 
-            // Update maximum window size
-            maxlen = Math.max(maxlen, right - left + 1);
+            // Update the max length of the valid window
+            maxLen = Math.max(maxLen, right - left + 1);
         }
 
-        // Return the final result
-        return maxlen;
+        // Return the result
+        return maxLen;
     }
     }
