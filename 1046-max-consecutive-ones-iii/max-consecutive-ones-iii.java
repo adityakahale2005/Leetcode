@@ -1,33 +1,36 @@
 class Solution {
     public int longestOnes(int[] nums, int k) {
-           // Variable to store maximum length
-        int maxLen = 0;
+            // Left pointer of the sliding window
+        int left = 0;
 
-        // Loop to pick each possible start index
-        for (int i = 0; i < nums.length; i++) {
+        // Counter for zeros in the window
+        int zerocount = 0;
 
-            // Counter for zeros in current subarray
-            int zeros = 0;
+        // Variable to store maximum window length
+        int maxlen = 0;
 
-            // Loop to pick each end index for the subarray
-            for (int j = i; j < nums.length; j++) {
+        // Right pointer expands the window
+        for (int right = 0; right < nums.length; right++) {
 
-                // If element is zero, increment zero counter
-                if (nums[j] == 0) {
-                    zeros++;
-                }
-
-                // If number of zeros exceeds allowed flips, break
-                if (zeros > k) {
-                    break;
-                }
-
-                // Update maximum length if current subarray is valid
-                maxLen = Math.max(maxLen, j - i + 1);
+            // If current element is zero, increment zerocount
+            if (nums[right] == 0) {
+                zerocount++;
             }
+
+            // If zerocount exceeds k, move left and adjust zerocount
+            if (zerocount > k) {
+                if (nums[left] == 0) {
+                    zerocount--;
+                }
+                // Shrink window from left
+                left++; 
+            }
+
+            // Update maximum window size
+            maxlen = Math.max(maxlen, right - left + 1);
         }
 
-        // Return the maximum valid subarray length
-        return maxLen;
+        // Return the final result
+        return maxlen;
     }
     }
