@@ -13,6 +13,6 @@ class Solution {
                 return new int[]{i+1,j+1};
             }
         }
-        return new int[]{};
+        return new int[]{-1,-1};
 }
 }
