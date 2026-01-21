@@ -1,16 +1,22 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        int subsets = (1 << nums.length);
-        for(int i=0 ; i<subsets ; i++){
-            List<Integer> ss = new ArrayList<>();
-            for(int j=0 ; j<=nums.length-1 ; j++){
-                if((i & (1<<j)) != 0){
-                    ss.add(nums[j]);
-                }
-            }
-            ans.add(ss);
+        List<List<Integer>> res = new ArrayList<>();
+        ss(0, nums, new ArrayList<>(), res);
+        return res;
+    }
+
+    public static void ss(int idx, int[] nums, List<Integer> curr, List<List<Integer>> res) {
+        if (idx == nums.length) {
+            res.add(new ArrayList<>(curr)); // important copy
+            return;
         }
-        return ans;
+
+        // pick
+        curr.add(nums[idx]);
+        ss(idx + 1, nums, curr, res);
+
+        // skip
+        curr.remove(curr.size() - 1);
+        ss(idx + 1, nums, curr, res);
     }
 }
