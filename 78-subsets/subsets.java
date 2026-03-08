@@ -16,7 +16,7 @@ class Solution {
         ss(idx + 1, nums, curr, res);
 
         // skip
-        curr.remove(curr.size() - 1);
+        curr.remove(curr.size() - 1); // backtracking
         ss(idx + 1, nums, curr, res);
     }
 }
