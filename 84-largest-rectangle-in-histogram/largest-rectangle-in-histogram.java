@@ -1,38 +1,33 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
-         int n = heights.length;
-            Stack<Integer> st = new Stack<>();
-            int[] leftsmall = new int[n];
-            int[] rightsmall = new int[n];
+        Stack<Integer> st = new Stack<>();
+        int maxArea = 0;
+        int n = heights.length;
+        int nse;
+        int pse;
+        int ele;
 
-            // Compute NSL (Nearest Smaller to Left)
-            for (int i = 0; i < n; i++) {
-                while (!st.isEmpty() && heights[st.peek()] >= heights[i]) {
-                    st.pop();
-                }
-                leftsmall[i] = st.isEmpty() ? 0 : st.peek() + 1;
-                st.push(i);
-            }
+        for (int i = 0; i < n; i++) {
+           while(!st.isEmpty() && heights[st.peek()] > heights[i]){
+            ele = st.peek();
+            st.pop();
+            nse = i;
+            pse = st.isEmpty() ? -1 : st.peek();
 
-            // Clear the stack for reuse
-            st.clear();
-
-            // Compute NSR (Nearest Smaller to Right)
-            for (int i = n - 1; i >= 0; i--) {
-                while (!st.isEmpty() && heights[st.peek()] >= heights[i]) {
-                    st.pop();
-                }
-                rightsmall[i] = st.isEmpty() ? n - 1 : st.peek() - 1;
-                st.push(i);
-            }
-
-            // Compute max area
-            int maxArea = 0;
-            for (int i = 0; i < n; i++) {
-                int width = rightsmall[i] - leftsmall[i] + 1;
-                maxArea = Math.max(maxArea, heights[i] * width);
-            }
-
-            return maxArea;
+            maxArea = Math.max(maxArea , heights[ele]*(nse - pse -1));
+           }
+           st.push(i);
         }
+
+        while(!st.isEmpty()){
+            nse = n;
+            ele = st.peek();
+            st.pop();
+
+            pse = st.isEmpty() ? -1 : st.peek();
+
+            maxArea = Math.max(maxArea , heights[ele]*(nse - pse -1));
+        }
+        return maxArea;
     }
+}
