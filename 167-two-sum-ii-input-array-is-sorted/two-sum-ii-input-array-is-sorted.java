@@ -5,17 +5,15 @@ class Solution {
         int r = n-1;
 
         while(l<r){
-
             int sum = numbers[l] + numbers[r];
             if(sum == target){
                 return new int[]{l+1,r+1};
-            }
-            if(sum < target){
-                l++;
-            }else{
+            } else if(sum > target){
                 r--;
+            } else{
+                l++;
             }
         }
-        return new int[]{-1,-1}; 
+        return new int[]{-1,-1};
     }
 }
