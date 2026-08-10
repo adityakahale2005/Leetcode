@@ -6,13 +6,16 @@ class Solution {
         int maxArea = 0;
 
         while(l<r){
-            int Area = Math.min(height[l], height[r]) * (r - l);
+            int currArea = Math.min(height[l], height[r]) * (r - l);
 
-            if(Area > maxArea){
-                maxArea = Area;
-            }else if(height[l] < height[r]){
+            // if(Area > maxArea){
+            //     maxArea = Area;
+            // }
+            maxArea = Math.max(maxArea,currArea);
+            if(height[l] < height[r]){
             l++;
-            }else{
+            }
+            else{
             r--;
         }
     }
