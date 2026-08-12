@@ -1,15 +1,6 @@
 class Solution {
     public boolean isHappy(int n) {
-        
-        HashSet<Integer> num = new HashSet<>();
-
-        while(n != 1){
-
-            if(num.contains(n)){
-                return false;
-            }
-            num.add(n);
-
+        while(n!= 1 && n != 4){
             int sum = 0;
             while(n>0){
                 int digit = n % 10;
@@ -18,6 +9,6 @@ class Solution {
             }
             n = sum;
         }
-        return true;
-}
+        return n == 1;
+    }
 }
