@@ -9,12 +9,14 @@ class Solution {
         int leftsum = 0;
         for(int i=0 ; i<n ; i++){
             
+            // update rightsum
             rightsum -= nums[i];
 
             if(leftsum == rightsum){
                 return i;
             }
-
+            
+            // update leftsum
             leftsum += nums[i];
         }
         return -1;
